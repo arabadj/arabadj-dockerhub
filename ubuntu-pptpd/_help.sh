@@ -6,11 +6,11 @@ chmod 600 ~/.local/etc/ppp/chap-secrets
 
 docker build . -t arabadj/ubuntu-pptpd:20
 
-docker stop ubuntu-pptpd &> /dev/null; docker rm ubuntu-pptpd &> /dev/null
-docker run -d --name=ubuntu-pptpd --privileged --net=host -v ~/.local/etc/ppp/chap-secrets:/etc/ppp/chap-secrets arabadj/ubuntu-pptpd:20
+# docker stop ubuntu-pptpd &> /dev/null; docker rm ubuntu-pptpd &> /dev/null
+# docker run -d --name=ubuntu-pptpd --privileged --net=host -v ~/.local/etc/ppp/chap-secrets:/etc/ppp/chap-secrets:ro arabadj/ubuntu-pptpd:20
 
 docker stop ubuntu-pptpd &> /dev/null; docker rm ubuntu-pptpd &> /dev/null
-docker run -d --restart always --name=ubuntu-pptpd --privileged --net=host -v ~/.local/etc/ppp/chap-secrets:/etc/ppp/chap-secrets arabadj/ubuntu-pptpd:20
+docker run -d --restart always --name=ubuntu-pptpd --privileged --net=host -v ~/.local/etc/ppp/chap-secrets:/etc/ppp/chap-secrets:ro arabadj/ubuntu-pptpd:20
 
 docker exec -it ubuntu-pptpd /bin/bash
 
