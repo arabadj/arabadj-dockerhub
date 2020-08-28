@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+
+  svc:
+    image: arabadj/ubuntu-pptpd:20
+    restart: always
+    privileged: true
+    network_mode: host
+    ports:
+      - "1723:1723"
+    volumes:
+      - "{{ service_dir }}/etc/ppp/chap-secrets:/etc/ppp/chap-secrets:ro"
+
