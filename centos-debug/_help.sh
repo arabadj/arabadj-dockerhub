@@ -1,7 +1,13 @@
 #!/bin/bash
 
-docker build . -t arabadj/centos-debug:8
+docker build . -f CentOS7.Dockerfile -t arabadj/centos-debug:7
+docker build . -f CentOS8.Dockerfile -t arabadj/centos-debug:8
 
-docker run -it --rm --name centos-debug arabadj/centos-debug:8 /bin/bash
+
+
+docker run -it --rm --name centos-debug arabadj/centos-debug:7.8-latest /bin/bash
+docker run -it --rm --name centos-debug arabadj/centos-debug:8.2-latest /bin/bash
+
+docker run -it --rm --name centos-debug --privileged --net=host arabadj/centos-debug:8.2-latest /bin/bash
 
 
