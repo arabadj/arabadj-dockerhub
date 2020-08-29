@@ -25,12 +25,12 @@ export password_vpn="$(aws ssm get-parameters --region eu-central-1 --name passw
 #========================================================================================================================
 
 mkdir -p "$PATH_SERVICE"
-j2 ./templares/docker-compose.yml.j2 -o $PATH_SERVICE/docker-compose.yml
+j2 ./templates/docker-compose.yml.j2 -o $PATH_SERVICE/docker-compose.yml
 
 #------------------------------------------------------------------------------------------------------------------------
 
 mkdir -p "$PATH_SERVICE/etc/ppp/"
-j2 ./templares/chap-secrets.j2 -o $PATH_SERVICE/etc/ppp/chap-secrets
+j2 ./templates/chap-secrets.j2 -o $PATH_SERVICE/etc/ppp/chap-secrets
 chmod 600 $PATH_SERVICE/etc/ppp/chap-secrets
 
 #========================================================================================================================
@@ -39,5 +39,6 @@ cd $PATH_SERVICE
 
 [ "$1" == "up" ] && $PATH_COMPOSE/docker-compose up -d --remove-orphans
 [ "$1" == "down" ] && $PATH_COMPOSE/docker-compose down --remove-orphans
+[ "$1" == "down" ] && [ "$2" == "clean" ] && rm -rf $PATH_SERVICE
 
 #========================================================================================================================
