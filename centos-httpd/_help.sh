@@ -11,4 +11,3 @@ docker run -d --name centos-httpd -p 80:80/tcp arabadj/centos-httpd:7.8-latest
 docker run -d --name centos-httpd -p 80:80/tcp arabadj/centos-httpd:8.2-latest
 
 docker exec -it centos-httpd /bin/bash
-
